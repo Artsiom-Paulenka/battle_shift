@@ -1,15 +1,18 @@
-import java.util.Arrays;
-
+//Создать поле игры
+//Создать базовую генерацию кораблей
+//Дать возможность игроку стрелять
 public class Main {
     public static void main(String[] args) {
-
-        FieldGenerator fieldGenerator = new FieldGenerator(10,10);
-
+        FieldGenerator fieldGenerator = new FieldGenerator(10, 10);
         int[][] field = fieldGenerator.generate();
 
-        for (int i = 0; i < 10; i++) {
-            System.out.println(Arrays.toString(field[i]));
-        }
+        FieldPrinter fieldPrinter = new FieldPrinter(10);
+        fieldPrinter.printField(field);
+
+        Game game = new Game(field);
+        game.start();
+    }
+}
 
       // int a = 5;
       // int[] b = new int[10];
@@ -30,8 +33,8 @@ public class Main {
       // for (int i = 0; i <10; i++) {
       //     sum += b[i];
       // }
-      // System.out.println(sum);
+      // System.out.println(sum);}
+//}
 
 
-    }
-}
+
