@@ -1,42 +1,54 @@
 
 
-    import java.util.Scanner;
 
-    public class Game {
+import java.util.Scanner;
 
-        private int[][] field;
+public class Game {
 
-        public Game(int[][] field) {
-            this.field = field;
-        }
+    private int[][] field;
 
-        public void start() {
-            Scanner scanner = new Scanner(System.in);
+    private int length;
+    private int width;
 
-            for (int i = 0; i < 10; i++) {
-                int first = scanner.nextInt();
-                int second = scanner.nextInt();
-                if (first < 10 && second < 10 && first >= 0 && second >= 0) {
-                    int shot = field[first][second];
-
-                    if (shot == 0) {
-                        System.out.println("Вы не попали");
-                    }
-                    else {
-                        System.out.println("Вы попали");
-                    }
-                }
-                else {
-                    System.out.println("Что-то куда-то не туда");
-                }
-
-
-            }
-
-            //подсчет очков
-
-            //тут как-то нужно играть
-        }
-
+    public Game(int[][] field, int length, int width) {
+        this.field = field;
+        this.length = length;
+        this.width = width;
     }
+
+    public void start() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Вам дается попыток: ");
+        int numberOfAttempts = scanner.nextInt();
+
+        int points = 0;
+        for (int i = 0; i < numberOfAttempts; i++) {
+            System.out.print("Введите число по горизонтали: ");
+            int first = scanner.nextInt();
+            System.out.print("Введите число по вертикали: ");
+            int second = scanner.nextInt();
+
+            if (first < length && second < width && first >= 0 && second >= 0) {
+                int shot = field[first][second];
+
+                if (shot == 0) {
+                    System.out.println("Вы не попали");
+                }
+                if (shot == 1) {
+                    points++;
+                }
+            } else {
+                System.out.println("Что-то куда-то не туда");
+            }
+        }
+        System.out.println("Ты уничтожил кораблей: " + points);
+    }
+}
+
+
+
+
+
+
+
 
